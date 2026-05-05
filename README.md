@@ -16,68 +16,88 @@ Include the neural network model diagram.
 ## DESIGN STEPS
 ### STEP 1: 
 
-Write your own steps
+Load dataset
 
 ### STEP 2: 
 
-
+Process the Dataset
 
 ### STEP 3: 
 
-
+Split features and target
 
 ### STEP 4: 
 
-
+Define Neural Network 
 
 ### STEP 5: 
 
+Initialize the training loop and train the model
 
 
 ### STEP 6: 
 
-
+Compute metrics as result
 
 
 
 ## PROGRAM
 
-### Name:
+### Name: Krishna Prasad S
 
-### Register Number:
+### Register Number: 212223230108
 
 ```python
 class PeopleClassifier(nn.Module):
     def __init__(self, input_size):
         super(PeopleClassifier, self).__init__()
         #Include your code here
-
-
+        self.fc1 = nn.Linear(input_size, 32)
+        self.fc2 = nn.Linear(32, 16)
+        self.fc3 = nn.Linear(16, 8)
+        self.fc4 = nn.Linear(8, 4)
 
     def forward(self, x):
-        #Include your code here
+      #Include your code here
+      x = F.relu(self.fc1(x))
+      x = F.relu(self.fc2(x))
+      x = F.relu(self.fc3(x))
+      x = self.fc4(x)
+      return x
+
         
 # Initialize the Model, Loss Function, and Optimizer
 
 def train_model(model, train_loader, criterion, optimizer, epochs):
-    #Include your code here
-
+  #Include your code here
+  model.train()
+  for epoch in range(epochs):
+    for inputs, label in train_loader:
+      optimizer.zero_grad()
+      outputs = model(inputs)
+      loss = criterion(outputs, label)
+      loss.backward()
+      optimizer.step()
 ```
 
 ### Dataset Information
-Include screenshot of the dataset.
+
+![alt text](Output-img/Dataset.png)
 
 ### OUTPUT
 
 ## Confusion Matrix
 
-Include confusion matrix here
+![alt text](Output-img/Conf-mat.png)
+![alt text](Output-img/conf-mat2.png)
 
 ## Classification Report
-Include classification report here
+
+![alt text](Output-img/class-report.png)
 
 ### New Sample Data Prediction
-Include your sample input and output here
+
+![alt text](Output-img/output.png)
 
 ## RESULT
-Include your result here
+Thus, a Neural Network Classification Model for the given dataset has been developed.
