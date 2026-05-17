@@ -78,6 +78,10 @@ def train_model(model, train_loader, criterion, optimizer, epochs):
       loss = criterion(outputs, label)
       loss.backward()
       optimizer.step()
+
+model = PeopleClassifier(input_size=X_train.shape[1])
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr = 0.001)
 ```
 
 ### Dataset Information
